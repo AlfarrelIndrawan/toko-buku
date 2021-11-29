@@ -1,0 +1,51 @@
+body {
+  font-family: sans-serif;
+  background-size: cover;
+}
+.container {
+  display: grid;
+  grid-template-columns: 50% auto;
+  margin: 0;
+}
+.bg img {
+  width: 600px;
+}
+.content a {
+  margin-top: 2em;
+}
+/*LOGIN*/
+.t-input {
+  padding: 1em;
+}
+.form-login input:hover {
+  box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11);
+}
+.t-input {
+  border: 1px solid #656565;
+  width: 400px;
+  height: 50px;
+  left: 793px;
+  top: 368px;
+  margin-bottom: 1.2em;
+  box-sizing: border-box;
+
+  border-radius: 6px;
+}
+
+.submit-button {
+  width: 400px;
+  height: 60px;
+  left: 793px;
+  top: 756px;
+
+  background: #f0914d;
+  border-radius: 6px;
+}
+
+.toregis a {
+  color: #696f79;
+}
+.toregis a:hover {
+  transition: all 0.2s;
+  color: #f0914d;
+}

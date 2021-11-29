@@ -1,0 +1,395 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.main {
+  width: 100%;
+  min-height: 900px;
+  background: rgba(245, 245, 245, 1);
+  /* padding-top: 300px; */
+  padding: 300px 100px 0 90px;
+}
+
+/* -----------------------------navbar------------------------------ */
+.fixed-top {
+  width: 100%;
+  height: 123px;
+  background: rgba(240, 145, 77, 1);
+  position: relative;
+  top: -20px;
+}
+.nav-item {
+  width: 479px;
+  height: 20px;
+  position: absolute;
+  top: 46px;
+  left: 426px;
+}
+.nav-item > a:hover,
+a:active,
+a:visited {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+a:hover,
+.active-nav {
+  font-weight: bold;
+}
+.item {
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+  font-family: Poppins;
+  font-weight: Regular;
+  font-size: 18px;
+  margin: 0 30px;
+  text-decoration: none;
+}
+.logout {
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 44px;
+  left: 1186px;
+  font-family: Poppins;
+  font-size: 22px;
+  text-decoration: none;
+}
+.logout > .logout:hover,
+.logout:active,
+.logout:visited {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+.logout:hover {
+  font-weight: bolder;
+}
+.logo {
+  width: 111px;
+  height: 91px;
+  background: url("../images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 15px;
+  left: 45px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.brand {
+  width: 200px;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 33px;
+  left: 183px;
+  font-family: Open Sans;
+  font-weight: Semibold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.user {
+  width: 231px;
+  height: 34px;
+  position: absolute;
+  top: 44px;
+  left: 909px;
+}
+.username {
+  width: 181px;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 2px;
+  left: 45px;
+  font-family: Roboto;
+  font-weight: Regular;
+  font-size: 18px;
+}
+/* -----------------------------end-navbar------------------------------ */
+
+/* -----------------------------kategori------------------------------ */
+.button {
+  position: absolute;
+  background-color: transparent !important;
+  color: rgba(240, 145, 77, 1) !important;
+  border-color: rgba(240, 145, 77, 1) !important;
+}
+.button > span {
+  position: relative;
+}
+.all {
+  top: 191px;
+  left: 104px;
+  width: 57px;
+  height: 30px;
+}
+.all > span {
+  top: -4px;
+}
+.romance {
+  top: 191px;
+  left: 178px;
+  width: 112px;
+  height: 30px;
+}
+.romance > span {
+  top: -4px;
+}
+.religion {
+  top: 191px;
+  left: 307px;
+  width: 179px;
+  height: 30px;
+}
+.religion > span {
+  top: -4px;
+  font-size: 14.5px;
+}
+.manga {
+  top: 191px;
+  left: 504px;
+  width: 93px;
+  height: 30px;
+}
+.manga > span {
+  top: -4px;
+}
+.computer {
+  top: 237px;
+  left: 104px;
+  width: 200px;
+  height: 30px;
+}
+.computer > span {
+  top: -4px;
+  font-size: 14.5px;
+}
+.history {
+  top: 237px;
+  left: 322px;
+  width: 88px;
+  height: 30px;
+}
+.history > span {
+  top: -4px;
+}
+.btn:hover,
+.active-kategori {
+  background-color: rgba(240, 145, 77, 1) !important;
+  color: #ffffff !important;
+}
+/* -----------------------------end-kategori------------------------------ */
+
+/* -----------------------------search------------------------------ */
+.search {
+  width: 189px;
+  height: 30px;
+  position: absolute;
+  top: 237px;
+  left: 940px;
+}
+.input {
+  width: 189px;
+  height: 30px;
+  position: relative;
+}
+.submit {
+  position: absolute;
+  top: 237px;
+  left: 1141px;
+}
+.submit .btn {
+  width: 80px;
+  height: 30px;
+  background-color: rgba(240, 145, 77, 1) !important;
+  color: #ffffff !important;
+}
+.submit .btn > span {
+  position: relative;
+  top: -4px;
+}
+/* -----------------------------end-search------------------------------ */
+
+/* -----------------------------produk------------------------------ */
+
+.produk {
+  width: 200px;
+  padding: 15px;
+  display: inline-block !important;
+  margin: 0 12px 30px;
+}
+.produk .card-body .judul {
+  text-align: center;
+  font-size: 18px;
+}
+.produk .card-body .penulis {
+  text-align: center;
+  margin-top: -10px;
+}
+.produk .card-body .kategori {
+  text-align: right;
+  font-size: 12px;
+  margin: 20px -15px -20px 0;
+}
+.produk .card-body .harga {
+  text-align: right;
+  margin: 20px -15px -20px 0;
+  font-size: 20px;
+  color: rgb(255, 56, 56);
+}
+.produk .card-body .tambah {
+  position: relative;
+  top: 10px;
+  left: 2px;
+  font-size: 14px;
+  border-color: rgba(240, 145, 77, 1);
+  color: rgba(240, 145, 77, 1);
+  padding: -5px;
+}
+
+/* -----------------------------end-produk------------------------------ */
+
+/* -----------------------------total-harga------------------------------ */
+.total {
+  position: absolute;
+  top: 200px;
+  left: 1150px;
+  text-align: right;
+  margin-bottom: -5px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.total-harga .harga {
+  position: absolute;
+  top: 220px;
+  left: 1080px;
+  font-size: 32px;
+}
+/* -----------------------------end-total-harga------------------------------ */
+
+/* -----------------------------keranjang------------------------------ */
+
+.keranjang {
+  width: 100%;
+  height: 250px;
+  padding: 15px;
+  display: inline-block !important;
+  margin: 0 12px 30px;
+}
+.keranjang > img {
+  height: 100%;
+  width: auto;
+  float: left;
+}
+.keranjang .card-body .judul {
+  font-size: 24px;
+  margin-left: 150px;
+}
+.keranjang .card-body .penulis {
+  font-size: 18px;
+  margin-left: 150px;
+  margin-top: -10px;
+}
+.keranjang .card-body .kategori {
+  font-size: 18px;
+  margin-left: 150px;
+  margin-top: -10px;
+}
+.keranjang .card-body .penerbit {
+  font-size: 18px;
+  margin-left: 150px;
+  margin-top: -10px;
+}
+.harga {
+  text-align: right;
+  font-size: 24px;
+  color: rgb(255, 56, 56);
+}
+.keranjang .card-body .hapus {
+  position: relative;
+  top: -200px;
+  left: 1030px;
+  font-size: 14px;
+  border-color: rgba(240, 145, 77, 1);
+  color: rgba(240, 145, 77, 1);
+  padding: -5px;
+}
+/* -----------------------------end-keranjang------------------------------ */
+
+/* -----------------------------nav-bottom------------------------------ */
+.fixed-bottom {
+  width: 100%;
+  height: 100px;
+  background: #ffffff;
+  position: relative;
+  top: 600px;
+}
+.fixed-bottom .total {
+  top: 21px;
+  left: 650px;
+}
+.fixed-bottom .harga {
+  position: absolute;
+  top: 15px;
+  right: 400px;
+}
+.fixed-bottom .bayar {
+  position: absolute;
+  top: 15px;
+  left: 1100px;
+  font-size: 18px;
+  border-color: rgba(240, 145, 77, 1);
+  color: rgba(240, 145, 77, 1);
+  padding: 5px 30px;
+}
+/* -----------------------------end-nav-bottom------------------------------ */
+
+
+/* -----------------------------profil------------------------------ */
+.profil .foto {
+  position: absolute;
+  left: 620px;
+} 
+.profil .nama {
+  position: absolute;
+  top: 370px;
+  left: 450px;
+}
+.profil .email {
+  position: absolute;
+  top: 450px;
+  left: 450px;
+}
+.profil .nomor {
+  position: absolute;
+  top: 530px;
+  left: 450px;
+}
+.profil .a {
+  margin-bottom: 5px;
+}
+.profil .c {
+  position: relative;
+  width: 60px;
+  left: 400px;
+  top: -40px;
+  color: rgba(240, 145, 77, 1);
+}
+.profil .simpan {
+  position: absolute;
+  top: 650px;
+  left: 645px;
+  border-color: rgba(240, 145, 77, 1);
+  color: rgba(240, 145, 77, 1);
+}
+.profil .simpan .btn{
+  border-color: rgba(240, 145, 77, 1);
+  color: rgba(240, 145, 77, 1);
+}
+
+/* -----------------------------end-profil------------------------------ */
