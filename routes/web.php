@@ -29,6 +29,7 @@ Route::get('/register', function () {
 
 Route::post('/register/proses', 'LoginController@registrasi')->name('proses_register');
 
+Route::post('/keranjang/proses', 'HomeController@masuk_keranjang')->name('masuk_keranjang');
 Route::get('/keranjang', function () {
     return view('keranjang');
 });

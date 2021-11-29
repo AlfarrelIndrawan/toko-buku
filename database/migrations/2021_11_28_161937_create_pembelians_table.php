@@ -18,8 +18,9 @@ class CreatePembeliansTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('buku_id')->constrained();
             $table->integer('jumlah');
-            $table->enum('status', ['Belum Dibayar', 'Dibayar']);
-            $table->binary('bukti');
+            $table->integer('harga');
+            $table->enum('status', ['Keranjang', 'Dibayar']);
+            $table->binary('bukti')->nullable();
             $table->timestamps();
         });
     }

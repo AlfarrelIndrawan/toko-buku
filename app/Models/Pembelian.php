@@ -10,10 +10,10 @@ class Pembelian extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_akun',
-        'id_buku',
+        'user_id',
+        'buku_id',
         'jumlah',
-        'timestamp',
+        'harga',
         'bukti',
         'status',
     ];
