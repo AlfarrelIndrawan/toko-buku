@@ -37,10 +37,17 @@ class HomeController extends Controller
     {
         if(Auth::check()) {
             $id = Auth::user()->id;
+            $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
             $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            return view('keranjang', compact('pembelian'));
+            return view('keranjang', compact('pembelian', 'id_pembelian'));
         } else {
             return redirect('/login');
         }
+    }
+
+    public function hapus_keranjang($id)
+    {
+        Pembelian::where('id', $id)->delete();
+        return redirect('/keranjang');
     }
 }

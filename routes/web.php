@@ -29,8 +29,9 @@ Route::get('/register', function () {
 
 Route::post('/register/proses', 'LoginController@registrasi')->name('proses_register');
 
-Route::post('/keranjang/proses', 'HomeController@masuk_keranjang')->name('masuk_keranjang');
 Route::get('/keranjang', 'HomeController@keranjang')->name('keranjang');
+Route::post('/keranjang/proses', 'HomeController@masuk_keranjang')->name('masuk_keranjang');
+Route::get('/keranjang/hapus/{id}', 'HomeController@hapus_keranjang')->name('hapus_keranjang');
 
 Route::get('/bayar', function () {
     return view('bayar');

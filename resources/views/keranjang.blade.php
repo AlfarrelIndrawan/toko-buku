@@ -39,6 +39,7 @@
         @else
         @php
             $total = 0;
+            $i = 0;
         @endphp
         @foreach ($pembelian as $p)
         @php
@@ -53,7 +54,9 @@
                 <p class="card-text penerbit">{{$p->penerbit}}</p>
                 <p class="card-text penerbit">Jumlah: {{$p->jumlah}}</p>
                 <p class="card-text harga">IDR {{$p->total_harga}}</p>
-                <div class="hapus btn rounded-pill">Hapus</div>
+                <a href="/keranjang/hapus/{{$id_pembelian[$i++]->id}}">
+                    <div class="hapus btn rounded-pill">Hapus</div>
+                </a>
             </div>
         </div>
         @endforeach
