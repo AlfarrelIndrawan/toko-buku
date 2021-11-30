@@ -25,11 +25,22 @@ class HomeController extends Controller
             'user_id' => Auth::user()->id,
             'buku_id' => $request->id_buku,
             'jumlah' => $request->quant[2],
-            'harga' => $harga,
+            'total_harga' => $harga,
             'status' => "Keranjang",
         ]);
         $stok = $request->stok - $request->quant[2];
         Buku::where('id', $request->id_buku)->update(['stok' => $stok]);
         return redirect('/');
+    }
+
+    public function keranjang(Request $request)
+    {
+        if(Auth::check()) {
+            $id = Auth::user()->id;
+            $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
+            return view('keranjang', compact('pembelian'));
+        } else {
+            return redirect('/login');
+        }
     }
 }

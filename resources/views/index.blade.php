@@ -81,6 +81,7 @@
                 <p class="card-text kategori">{{$b->kategori}}</p>
                 <p class="card-text kategori">Stok: {{$b->stok}}</p>
                 <p class="card-text harga">IDR {{$b->harga}}</p><br>
+                @auth
                 <form action="{{route('masuk_keranjang')}}" method="post">
                     @csrf
                     <input type="hidden" name="id_buku" value="{{$b->id}}">
@@ -103,6 +104,7 @@
                         Tambah ke Keranjang
                     </button>
                 </form>
+                @endauth
             </div>
         </div>
         @endforeach

@@ -31,34 +31,39 @@
         <!-- end-navbar -->
 
         <!-- keranjang -->
+        @if (empty($pembelian[0]))
+        <div class="card keranjang">
+            <h1>Keranjang kamu masih kosong nih! Yuk beli!</h1>
+            <a href="/"><button>BELI</button></a>
+        </div>
+        @else
+        @php
+            $total = 0;
+        @endphp
+        @foreach ($pembelian as $p)
+        @php
+            $total += $p->total_harga;
+        @endphp
         <div class="card keranjang">
             <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="produk.png" />
             <div class="card-body">
-                <p class="card-text judul"><b>Catatan Tentang Hujan</b></p>
-                <p class="card-text penulis">Anindya Frista</p>
-                <p class="card-text kategori">Romance</p>
-                <p class="card-text penerbit">Elex Media Komputindo</p>
-                <p class="card-text harga">IDR 89,000</p>
+                <p class="card-text judul"><b>{{$p->nama}}</b></p>
+                <p class="card-text penulis">{{$p->penulis}}</p>
+                <p class="card-text kategori">{{$p->kategori}}</p>
+                <p class="card-text penerbit">{{$p->penerbit}}</p>
+                <p class="card-text penerbit">Jumlah: {{$p->jumlah}}</p>
+                <p class="card-text harga">IDR {{$p->total_harga}}</p>
                 <div class="hapus btn rounded-pill">Hapus</div>
             </div>
         </div>
-        <div class="card keranjang">
-            <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="produk.png" />
-            <div class="card-body">
-                <p class="card-text judul"><b>Catatan Tentang Hujan</b></p>
-                <p class="card-text penulis">Anindya Frista</p>
-                <p class="card-text kategori">Romance</p>
-                <p class="card-text penerbit">Elex Media Komputindo</p>
-                <p class="card-text harga">IDR 89,000</p>
-                <div class="hapus btn rounded-pill">Hapus</div>
-            </div>
-        </div>
+        @endforeach
+        @endif
         <!-- end-keranjang -->
 
         <!-- bottom navbar -->
         <nav class="navbar fixed-bottom shadow lg-3 mb-5 bg-white rounded border">
             <p class="total">Total Harga</p>
-            <p class="harga">IDR 267,000</p>
+            <p class="harga">IDR {{number_format($total, 0, ",", ".")}}</p>
             <div class="bayar btn rounded-pill">Bayar</div>
         </nav>
         <!-- end-bottom navbar -->

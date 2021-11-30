@@ -13,7 +13,7 @@ class Pembelian extends Model
         'user_id',
         'buku_id',
         'jumlah',
-        'harga',
+        'total_harga',
         'bukti',
         'status',
     ];
