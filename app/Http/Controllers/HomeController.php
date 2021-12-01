@@ -15,22 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $buku = Buku::get();
-        return view('index', compact('buku'));
-    }
-
-    public function masuk_keranjang(Request $request)
-    {
-        $harga = $request->harga * $request->quant[2];
-        Pembelian::create([
-            'user_id' => Auth::user()->id,
-            'buku_id' => $request->id_buku,
-            'jumlah' => $request->quant[2],
-            'total_harga' => $harga,
-            'status' => "Keranjang",
-        ]);
-        $stok = $request->stok - $request->quant[2];
-        Buku::where('id', $request->id_buku)->update(['stok' => $stok]);
-        return redirect('/');
+        return view('utama.index', compact('buku'));
     }
 
     public function keranjang(Request $request)
@@ -39,12 +24,37 @@ class HomeController extends Controller
             $id = Auth::user()->id;
             $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
             $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            return view('keranjang', compact('pembelian', 'id_pembelian'));
+            return view('utama.keranjang', compact('pembelian', 'id_pembelian'));
         } else {
             return redirect('/login');
         }
     }
 
+    public function masuk_keranjang(Request $request)
+    {
+        $id_user = Auth::user()->id;
+        if(empty(Pembelian::where('user_id', $id_user)->where('buku_id', $request->id_buku)->where('status', 'keranjang')->get()[0])) {
+            $harga = $request->harga * $request->quant[2];
+            Pembelian::create([
+                'user_id' => $id_user,
+                'buku_id' => $request->id_buku,
+                'jumlah' => $request->quant[2],
+                'total_harga' => $harga,
+                'status' => "Keranjang",
+            ]);
+        } else {
+            $jumlah = Pembelian::select('jumlah')->where('user_id', $id_user)->where('buku_id', $request->id_buku)->where('status', 'keranjang')->get();
+            $stok = Buku::select('stok')->where('id', $request->id_buku)->get()[0]->stok;
+            $jumlah_akhir = (int) $jumlah[0]->jumlah + (int) $request->quant[2];
+            if($jumlah_akhir > $stok) {
+                $jumlah_akhir = $stok;
+            }
+            $harga = $request->harga * $jumlah_akhir;
+            Pembelian::where('user_id', $id_user)->where('buku_id', $request->id_buku)->where('status', 'keranjang')->update(['jumlah' => $jumlah_akhir, 'total_harga' => $harga]);
+        }
+        return redirect('/');
+    }
+    
     public function hapus_keranjang($id)
     {
         Pembelian::where('id', $id)->delete();
@@ -57,7 +67,7 @@ class HomeController extends Controller
             $id = Auth::user()->id;
             $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
             $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            return view('bayar', compact('pembelian', 'id_pembelian'));
+            return view('utama.bayar', compact('pembelian', 'id_pembelian'));
         } else {
             return redirect('/login');
         }
@@ -67,6 +77,8 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->update(['bukti'=> $request->bukti, 'status' => 'Dibayar']);
+        $stok = $request->stok - $request->quant[2];
+        Buku::where('id', $request->id_buku)->update(['stok' => $stok]);
         return redirect('/');
     }
 }

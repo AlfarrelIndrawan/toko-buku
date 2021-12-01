@@ -17,14 +17,14 @@ Route::get('/', 'HomeController@index')->name('index');
 
 
 Route::get('/login', function () {
-    return view('login');
+    return view('login.login');
 });
 
 Route::post('/login/proses', 'LoginController@login')->name('proses_login');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/register', function () {
-    return view('regis');
+    return view('login.regis');
 });
 
 Route::post('/register/proses', 'LoginController@registrasi')->name('proses_register');
@@ -37,5 +37,5 @@ Route::get('/bayar', 'HomeController@bayar')->name('bayar');
 Route::post('/bayar/proses', 'HomeController@proses_bayar')->name('proses_bayar');
 
 Route::get('/profil', function () {
-    return view('profil');
+    return view('utama.profil');
 });
