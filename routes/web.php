@@ -36,6 +36,4 @@ Route::get('/keranjang/hapus/{id}', 'HomeController@hapus_keranjang')->name('hap
 Route::get('/bayar', 'HomeController@bayar')->name('bayar');
 Route::post('/bayar/proses', 'HomeController@proses_bayar')->name('proses_bayar');
 
-Route::get('/profil', function () {
-    return view('utama.profil');
-});
+Route::get('/profil', 'HomeController@profil')->name('profil');

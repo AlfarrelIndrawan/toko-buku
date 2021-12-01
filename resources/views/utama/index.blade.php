@@ -34,8 +34,9 @@
 <!-- end-search -->
 
 <!-- produk -->
+<div class="" style="margin-top: 6rem!important">
 @foreach ($buku as $b)
-<div class="card produk" style="height:597px;">
+<div class="card produk">
     <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="Card image cap" />
     <div class="card-body">
         <p class="card-text judul"><b>{{$b->nama}}</b></p>
@@ -76,6 +77,7 @@
     </div>
 </div>
 @endforeach
+</div>
 <!-- end-produk -->
 
 <!-- js -->

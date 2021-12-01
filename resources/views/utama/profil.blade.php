@@ -1,54 +1,54 @@
 @extends('utama.layout')
 @section('title', 'Home')
 @section('konten')
-<div class="profil">
-    <div class="foto">
-        <img src="{{ asset('img/profil.png') }}" alt="profil.png" />
+<div class="profil bg-light border p-5">
+    <h4 class="text-center">Profil</h4>
+    <div class="ps-5">
+        <div class="py-1 pb-3">
+            <img src="{{ asset('img/profil.png') }}" alt="profil.png" />
+        </div>
+        <div class="py-1">
+            <p class="a"><b>Nama</b></p>
+            <p class="b" style="display: inline-block">{{Auth::user()->nama}}</p>
+        </div>
+        <div class="py-1">
+            <p class="a"><b>Email</b></p>
+            <p class="b" style="display: inline-block">{{Auth::user()->email}}</p>
+        </div>
+        <div class="py-1">
+            <p class="a"><b>Alamat</b></p>
+            <p class="b" style="display: inline-block">{{Auth::user()->alamat}}</p>
+        </div>
     </div>
-    <div class="nama">
-        <p class="a"><b>Nama</b></p>
-        <p class="b" style="display: inline-block">user123</p>
-        <a href="">
-            <div class="c">
-                <p style="display: inline-block">Ubah</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                </svg>
-            </div>
+    <h4 class="text-center">Riwayat Pembelian</h4>
+    <div class="ps-5 py-4">
+        @if (empty($pembelian[0]))
+        <a href="/" class="text-black">
+            <h5 class="text-center py-3">Kamu belum beli apapun! Ayok belanja!</h5>
         </a>
-    </div>
-    <div class="email">
-        <p class="a"><b>Email</b></p>
-        <p class="b" style="display: inline-block">user@gmail.com</p>
-        <a href="">
-            <div class="c">
-                <p style="display: inline-block">Ubah</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                </svg>
+        @else
+        @php
+        $total = 0;
+        $nomor = 1;
+        @endphp
+        @foreach ($pembelian as $p)
+        @php
+        $total += $p->total_harga;
+        @endphp
+        <div class="row pe-5 pb-3">
+            <div class="col">
+                <p class="card-text judul"><b>{{$nomor++}}. {{$p->nama}}</b></p>
+                <p class="card-text penerbit">{{$p->kategori}}</p>
+                <p class="card-text penerbit">Jumlah: {{$p->jumlah}}</p>
+                <p class="card-text penerbit">Dibeli tanggal: {{$p->updated_at}}</p>
             </div>
-        </a>
-    </div>
-    <div class="nomor">
-        <p class="a"><b>Nomor HP</b></p>
-        <p class="b" style="display: inline-block">085123456789</p>
-        <a href="">
-            <div class="c">
-                <p style="display: inline-block">Ubah</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                </svg>
+            <div class="col">
+                <p class="card-text harga">IDR {{number_format($p->total_harga, 0, ",", ".")}}</p>
             </div>
-        </a>
+        </div>
+        @endforeach
+        @endif
     </div>
-    <div class="simpan">
-        <div class="btn rounded-pill">Simpan</div>
-    </div>
+
 </div>
 @endsection

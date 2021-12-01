@@ -76,9 +76,24 @@ class HomeController extends Controller
     public function proses_bayar(Request $request)
     {
         $id = Auth::user()->id;
+        $kode_buku = Pembelian::select('buku_id','jumlah')->where('user_id', $id)->where('status', 'keranjang')->get();
+        foreach($kode_buku as $k) {
+            $stok = Buku::select('stok')->where('id', $k->buku_id)->get()[0]->stok;
+            $stok_baru = $stok - $k->jumlah;
+            Buku::where('id', $k->buku_id)->update(['stok' => $stok_baru]);
+        }
         Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->update(['bukti'=> $request->bukti, 'status' => 'Dibayar']);
-        $stok = $request->stok - $request->quant[2];
-        Buku::where('id', $request->id_buku)->update(['stok' => $stok]);
         return redirect('/');
+    }
+
+    public function profil(Request $request)
+    {
+        if(Auth::check()) {
+            $id = Auth::user()->id;
+            $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'dibayar')->get();
+            return view('utama.profil', compact('pembelian'));
+        } else {
+            return redirect('/login');
+        }
     }
 }

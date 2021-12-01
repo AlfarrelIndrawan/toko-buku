@@ -30,7 +30,7 @@ class BukuSeeder extends Seeder
             'penerbit' => 'Elex Media Komputindo',
             'kategori' => 'Religion & Sprituality',
             'harga' => 89000,
-            'stok' => 10,
+            'stok' => 3,
         ]);
         $user = Buku::create([
             'nama' => "Catatan Tentang Hujan",
@@ -48,7 +48,7 @@ class BukuSeeder extends Seeder
             'penerbit' => 'Elex Media Komputindo',
             'kategori' => 'Computers & Technology',
             'harga' => 89000,
-            'stok' => 10,
+            'stok' => 0,
         ]);
         $user = Buku::create([
             'nama' => "Catatan Tentang Hujan",
