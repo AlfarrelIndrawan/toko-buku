@@ -4,8 +4,10 @@
 <!-- keranjang -->
 @if (empty($pembelian[0]))
 <div class="card keranjang">
-    <h1>Keranjang kamu masih kosong nih! Yuk beli!</h1>
-    <a href="/"><button>BELI</button></a>
+    <h1 class="text-center py-4">Keranjang kamu masih kosong nih! Yuk beli!</h1>
+    <div class="text-center">
+        <a href="/"><button class="btn rounded-pill px-4 py-3" style="background-color: #f0914d; color: white; width: 15%">BELI</button></a>
+    </div>
 </div>
 @else
 @php
@@ -35,6 +37,7 @@ $total += $p->total_harga;
 <!-- end-keranjang -->
 
 <!-- bottom navbar -->
+@if (!empty($pembelian[0]))
 <nav class="navbar fixed-bottom shadow lg-3 mb-5 bg-white rounded border container">
     <p class="total">Total Harga</p>
     <p class="harga">IDR {{number_format($total, 0, ",", ".")}}</p>
@@ -42,5 +45,6 @@ $total += $p->total_harga;
         <div class="bayar btn rounded-pill">Bayar</div>
     </a>
 </nav>
+@endif
 <!-- end-bottom navbar -->
 @endsection

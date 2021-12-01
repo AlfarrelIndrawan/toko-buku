@@ -24,7 +24,8 @@
 <div class="" style="margin-top: 2rem!important">
     @foreach ($buku as $b)
     <div class="card produk">
-        <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="Card image cap" />
+        @php $no_gambar = 'img/produk' . $b->id . '.jpg'; @endphp
+        <img class="card-img-top" src="{{ asset($no_gambar) }}" alt="Card image cap" />
         <div class="card-body">
             <p class="card-text judul"><b>{{$b->nama}}</b></p>
             <p class="card-text penulis">{{$b->penulis}}</p>
@@ -64,7 +65,9 @@
         </div>
     </div>
     @endforeach
-    {{$buku->links()}}
+    <div class="pb-5 d-flex flex-row-reverse pe-5 me-5">
+        {{$buku->links()}}
+    </div>
 </div>
 <!-- end-produk -->
 
