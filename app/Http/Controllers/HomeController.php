@@ -16,10 +16,10 @@ class HomeController extends Controller
     {
         $search = '%'. $request->search . '%';
         if(empty($request->kategori)) {
-            $buku = Buku::where('nama', 'like', $search)->paginate(5);
+            $buku = Buku::where('nama', 'like', $search)->paginate(15);
         } else {
             $kategori = $request->kategori;
-            $buku = Buku::where('kategori', $kategori)->where('nama', 'like', $search)->paginate(5);
+            $buku = Buku::where('kategori', $kategori)->where('nama', 'like', $search)->paginate(15);
         }
         $kategori = Buku::select('kategori')->distinct()->get();
         return view('utama.index', compact('buku', 'kategori'));
