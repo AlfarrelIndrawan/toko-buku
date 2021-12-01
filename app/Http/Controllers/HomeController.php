@@ -12,10 +12,17 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $buku = Buku::get();
-        return view('utama.index', compact('buku'));
+        $search = '%'. $request->search . '%';
+        if(empty($request->kategori)) {
+            $buku = Buku::where('nama', 'like', $search)->paginate(5);
+        } else {
+            $kategori = $request->kategori;
+            $buku = Buku::where('kategori', $kategori)->where('nama', 'like', $search)->paginate(5);
+        }
+        $kategori = Buku::select('kategori')->distinct()->get();
+        return view('utama.index', compact('buku', 'kategori'));
     }
 
     public function keranjang(Request $request)

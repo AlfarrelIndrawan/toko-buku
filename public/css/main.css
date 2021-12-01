@@ -28,8 +28,8 @@ body {
   left: 426px;
 }
 .nav-item > a:hover,
-a:active,
-a:visited {
+.nav-item > a:active,
+.nav-item > a:visited {
   color: rgba(255, 255, 255, 1);
   text-decoration: none;
 }

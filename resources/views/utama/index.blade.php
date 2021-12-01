@@ -2,81 +2,69 @@
 @section('title', 'Home')
 @section('konten')
 <!-- kategori -->
-<div class="all btn button active-kategori rounded-pill">
-    <span>All</span>
-</div>
-<div class="romance btn button rounded-pill">
-    <span>Romance</span>
-</div>
-<div class="religion btn button rounded-pill">
-    <span>Religion & Spirituality</span>
-</div>
-<div class="manga btn button rounded-pill">
-    <span>Manga</span>
-</div>
-<div class="computer btn button rounded-pill">
-    <span>Computers & Technology</span>
-</div>
-<div class="history btn button rounded-pill">
-    <span>History</span>
+<div class="pt-3 me-5" style="width: fit-content; text-align: end;">
+    <form action="{{route('index')}}" method="post" class="row">
+        @csrf
+        <select class="form-select my-1 col mx-3 w-auto" name="kategori" id="kategori">
+            <option value="">Silahkan pilih kategori buku</option>
+            <option value="">Semua</option>
+            @foreach($kategori as $k)
+            <option value="{{$k->kategori}}">{{$k->kategori}}</option>
+            @endforeach
+        </select>
+        <input class="input form-control my-1 col mx-3 w-auto rounded-pill" name="search" type="search"
+            placeholder="Masukkan judul buku" aria-label="Search" />
+        <input type="submit" value="Submit" class="btn rounded-pill my-1 col mx-3 px-3"
+            style="background-color: #f0914d; color: white;">
+    </form>
 </div>
 <!-- end-kategori -->
 
-<!-- search -->
-<div class="search">
-    <input class="input form-control mr-sm-2 rounded-pill" type="search" placeholder="Search..." aria-label="Search" />
-</div>
-<div class="submit">
-    <button class="btn my-2 my-sm-0 rounded-pill" type="submit">
-        <span>Search</span>
-    </button>
-</div>
-<!-- end-search -->
-
 <!-- produk -->
-<div class="" style="margin-top: 6rem!important">
-@foreach ($buku as $b)
-<div class="card produk">
-    <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="Card image cap" />
-    <div class="card-body">
-        <p class="card-text judul"><b>{{$b->nama}}</b></p>
-        <p class="card-text penulis">{{$b->penulis}}</p>
-        <p class="card-text kategori">{{$b->kategori}}</p>
-        <p class="card-text kategori">Stok: <span
-                class="fw-bold {{$b->stok <= 3 ? 'text-danger' : ''}}">{{$b->stok}}</span></p>
-        <p class="card-text harga">IDR {{number_format($b->harga, 0, ",", ".")}}</p><br>
-        @auth
-        <form action="{{route('masuk_keranjang')}}" method="post">
-            @csrf
-            <input type="hidden" name="id_buku" value="{{$b->id}}">
-            <input type="hidden" name="stok" value="{{$b->stok}}">
-            <input type="hidden" name="harga" value="{{$b->harga}}">
-            @if ($b->stok == 0)
-            <h4 class="fw-bold text-danger">Stok Habis!</h4>
-            @else
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                        <i class="bi bi-dash"></i>
-                    </button>
-                </span>
-                <input type="text" id="quant" name="quant[2]" class="form-control input-number" value="0" min="0"
-                    max="{{$b->stok}}">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                        <i class="bi bi-plus"></i>
-                    </button>
-                </span>
-            </div>
-            <button type="submit" id="tambah" class="tambah btn rounded-pill" disabled>
-                Tambah ke Keranjang
-            </button>
-            @endif
-        </form>
-        @endauth
+<div class="" style="margin-top: 2rem!important">
+    @foreach ($buku as $b)
+    <div class="card produk">
+        <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="Card image cap" />
+        <div class="card-body">
+            <p class="card-text judul"><b>{{$b->nama}}</b></p>
+            <p class="card-text penulis">{{$b->penulis}}</p>
+            <p class="card-text kategori">{{$b->kategori}}</p>
+            <p class="card-text kategori">Stok: <span
+                    class="fw-bold {{$b->stok <= 3 ? 'text-danger' : ''}}">{{$b->stok}}</span></p>
+            <p class="card-text harga">IDR {{number_format($b->harga, 0, ",", ".")}}</p><br>
+            @auth
+            <form action="{{route('masuk_keranjang')}}" method="post">
+                @csrf
+                <input type="hidden" name="id_buku" value="{{$b->id}}">
+                <input type="hidden" name="stok" value="{{$b->stok}}">
+                <input type="hidden" name="harga" value="{{$b->harga}}">
+                @if ($b->stok == 0)
+                <h4 class="fw-bold text-danger">Stok Habis!</h4>
+                @else
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                            <i class="bi bi-dash"></i>
+                        </button>
+                    </span>
+                    <input type="text" id="quant" name="quant[2]" class="form-control input-number" value="0" min="0"
+                        max="{{$b->stok}}">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </span>
+                </div>
+                <button type="submit" id="tambah" class="tambah btn rounded-pill" disabled>
+                    Tambah ke Keranjang
+                </button>
+                @endif
+            </form>
+            @endauth
+        </div>
     </div>
-</div>
-@endforeach
+    @endforeach
+    {{$buku->links()}}
 </div>
 <!-- end-produk -->
 
