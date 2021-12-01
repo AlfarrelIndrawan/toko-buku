@@ -8,7 +8,7 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-    <title>Document</title>
+    <title>Keranjang</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@
                 <p class="card-text kategori">{{$p->kategori}}</p>
                 <p class="card-text penerbit">{{$p->penerbit}}</p>
                 <p class="card-text penerbit">Jumlah: {{$p->jumlah}}</p>
-                <p class="card-text harga">IDR {{$p->total_harga}}</p>
+                <p class="card-text harga">IDR {{number_format($p->total_harga, 0, ",", ".")}}</p>
                 <a href="/keranjang/hapus/{{$id_pembelian[$i++]->id}}">
                     <div class="hapus btn rounded-pill">Hapus</div>
                 </a>
@@ -64,10 +64,12 @@
         <!-- end-keranjang -->
 
         <!-- bottom navbar -->
-        <nav class="navbar fixed-bottom shadow lg-3 mb-5 bg-white rounded border">
+        <nav class="navbar fixed-bottom shadow lg-3 mb-5 bg-white rounded border container">
             <p class="total">Total Harga</p>
             <p class="harga">IDR {{number_format($total, 0, ",", ".")}}</p>
-            <div class="bayar btn rounded-pill">Bayar</div>
+            <a href="/bayar">
+                <div class="bayar btn rounded-pill">Bayar</div>
+            </a>
         </nav>
         <!-- end-bottom navbar -->
     </div>

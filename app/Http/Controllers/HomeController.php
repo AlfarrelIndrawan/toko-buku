@@ -50,4 +50,23 @@ class HomeController extends Controller
         Pembelian::where('id', $id)->delete();
         return redirect('/keranjang');
     }
+
+    public function bayar(Request $request)
+    {
+        if(Auth::check()) {
+            $id = Auth::user()->id;
+            $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
+            $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
+            return view('bayar', compact('pembelian', 'id_pembelian'));
+        } else {
+            return redirect('/login');
+        }
+    }
+
+    public function proses_bayar(Request $request)
+    {
+        $id = Auth::user()->id;
+        Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->update(['bukti'=> $request->bukti, 'status' => 'Dibayar']);
+        return redirect('/');
+    }
 }

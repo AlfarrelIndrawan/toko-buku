@@ -33,9 +33,8 @@ Route::get('/keranjang', 'HomeController@keranjang')->name('keranjang');
 Route::post('/keranjang/proses', 'HomeController@masuk_keranjang')->name('masuk_keranjang');
 Route::get('/keranjang/hapus/{id}', 'HomeController@hapus_keranjang')->name('hapus_keranjang');
 
-Route::get('/bayar', function () {
-    return view('bayar');
-});
+Route::get('/bayar', 'HomeController@bayar')->name('bayar');
+Route::post('/bayar/proses', 'HomeController@proses_bayar')->name('proses_bayar');
 
 Route::get('/profil', function () {
     return view('profil');

@@ -9,6 +9,7 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <title>DIGIBOOK</title>
 </head>
 
@@ -80,7 +81,7 @@
                 <p class="card-text penulis">{{$b->penulis}}</p>
                 <p class="card-text kategori">{{$b->kategori}}</p>
                 <p class="card-text kategori">Stok: {{$b->stok}}</p>
-                <p class="card-text harga">IDR {{$b->harga}}</p><br>
+                <p class="card-text harga">IDR {{number_format($b->harga, 0, ",", ".")}}</p><br>
                 @auth
                 <form action="{{route('masuk_keranjang')}}" method="post">
                     @csrf
@@ -111,8 +112,6 @@
         <!-- end-produk -->
 
         <!-- js -->
-        <script></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $(".button").each(function() {
