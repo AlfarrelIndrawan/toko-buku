@@ -27,14 +27,10 @@ class HomeController extends Controller
 
     public function keranjang(Request $request)
     {
-        if(Auth::check()) {
-            $id = Auth::user()->id;
-            $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            return view('utama.keranjang', compact('pembelian', 'id_pembelian'));
-        } else {
-            return redirect('/login');
-        }
+        $id = Auth::user()->id;
+        $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
+        $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
+        return view('utama.keranjang', compact('pembelian', 'id_pembelian'));
     }
 
     public function masuk_keranjang(Request $request)
@@ -70,14 +66,10 @@ class HomeController extends Controller
 
     public function bayar(Request $request)
     {
-        if(Auth::check()) {
-            $id = Auth::user()->id;
-            $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
-            return view('utama.bayar', compact('pembelian', 'id_pembelian'));
-        } else {
-            return redirect('/login');
-        }
+        $id = Auth::user()->id;
+        $id_pembelian = Pembelian::select('id')->where('user_id', $id)->where('status', 'keranjang')->get();
+        $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'keranjang')->get();
+        return view('utama.bayar', compact('pembelian', 'id_pembelian'));
     }
 
     public function proses_bayar(Request $request)
@@ -95,12 +87,8 @@ class HomeController extends Controller
 
     public function profil(Request $request)
     {
-        if(Auth::check()) {
-            $id = Auth::user()->id;
-            $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'dibayar')->get();
-            return view('utama.profil', compact('pembelian'));
-        } else {
-            return redirect('/login');
-        }
+        $id = Auth::user()->id;
+        $pembelian = Pembelian::leftJoin('bukus', 'pembelians.buku_id', '=', 'bukus.id')->where('user_id', $id)->where('status', 'dibayar')->get();
+        return view('utama.profil', compact('pembelian'));
     }
 }

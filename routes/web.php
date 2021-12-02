@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -15,25 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::post('/', 'HomeController@index')->name('index');
+require __DIR__.'/auth.php';
+Route::get('/keranjang', 'HomeController@keranjang')->middleware('auth')->name('keranjang');
+Route::post('/keranjang/proses', 'HomeController@masuk_keranjang')->middleware('auth')->name('masuk_keranjang');
+Route::get('/keranjang/hapus/{id}', 'HomeController@hapus_keranjang')->middleware('auth')->name('hapus_keranjang');
 
-Route::get('/login', function () {
-    return view('login.login');
-});
+Route::get('/bayar', 'HomeController@bayar')->middleware('auth')->name('bayar');
+Route::post('/bayar/proses', 'HomeController@proses_bayar')->middleware('auth')->name('proses_bayar');
 
-Route::post('/login/proses', 'LoginController@login')->name('proses_login');
-Route::get('/logout', 'LoginController@logout')->name('logout');
-
-Route::get('/register', function () {
-    return view('login.regis');
-});
-
-Route::post('/register/proses', 'LoginController@registrasi')->name('proses_register');
-
-Route::get('/keranjang', 'HomeController@keranjang')->name('keranjang');
-Route::post('/keranjang/proses', 'HomeController@masuk_keranjang')->name('masuk_keranjang');
-Route::get('/keranjang/hapus/{id}', 'HomeController@hapus_keranjang')->name('hapus_keranjang');
-
-Route::get('/bayar', 'HomeController@bayar')->name('bayar');
-Route::post('/bayar/proses', 'HomeController@proses_bayar')->name('proses_bayar');
-
-Route::get('/profil', 'HomeController@profil')->name('profil');
+Route::get('/profil', 'HomeController@profil')->middleware('auth')->name('profil');

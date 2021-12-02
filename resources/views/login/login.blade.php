@@ -22,7 +22,7 @@
             <h2
                 style="font-size:30pt;margin-top: 3em;margin-bottom: 0.5em; color: #303030;font-weight: bold;font-style:normal;">
                 Login To Your Account</h2>
-            <form class="form-login" method="post" action="{{route('proses_login')}}">
+            <form class="form-login" method="post" action="{{route('login')}}">
                 @csrf
                 <label
                     style="color: #696F79;font-style: normal;font-weight: 500; font-size: 16px;">Email</label><br><br>

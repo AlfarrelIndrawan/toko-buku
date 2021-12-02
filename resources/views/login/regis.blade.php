@@ -16,7 +16,7 @@
             </div>
         </a>
         <div class="content">
-            <a href="javascript:history.back()" style="text-decoration:none; color: #8692A6; margin-top:em;">
+            <a href="/login" style="text-decoration:none; color: #8692A6; margin-top:em;">
                 <p style="margin-top: 2em;margin-left:-5em;">&#10094 Back</p>
             </a>
 
@@ -26,7 +26,7 @@
             <h4 style="color: #8692A6; margin-bottom:2em;">For the purpose of School regulation, your details are
                 required.</h4>
 
-            <form class="form-login" method="post" action="{{route('proses_register')}}">
+            <form class="form-login" method="post" action="{{route('register')}}">
                 @csrf
                 <label
                     style="color: #696F79;font-style: normal;font-weight: 500; font-size: 16px;">Email</label><br><br>

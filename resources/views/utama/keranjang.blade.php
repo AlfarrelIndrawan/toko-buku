@@ -17,9 +17,10 @@ $i = 0;
 @foreach ($pembelian as $p)
 @php
 $total += $p->total_harga;
+$no_gambar = 'img/produk' . $p->buku_id . '.jpg';
 @endphp
 <div class="card keranjang">
-    <img class="card-img-top" src="{{ asset('img/produk1.png') }}" alt="produk.png" />
+    <img class="card-img-top" src="{{ asset($no_gambar) }}" alt="produk.png" />
     <div class="card-body">
         <p class="card-text judul"><b>{{$p->nama}}</b></p>
         <p class="card-text penulis">{{$p->penulis}}</p>
