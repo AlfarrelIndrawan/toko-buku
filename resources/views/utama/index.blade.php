@@ -29,6 +29,7 @@
         <div class="card-body">
             <p class="card-text judul"><b>{{$b->nama}}</b></p>
             <p class="card-text penulis">{{$b->penulis}}</p>
+            <p class="card-text kategori">{{$b->penerbit}}</p>
             <p class="card-text kategori">{{$b->kategori}}</p>
             <p class="card-text kategori">Stok: <span
                     class="fw-bold {{$b->stok <= 3 ? 'text-danger' : ''}}">{{$b->stok}}</span></p>
